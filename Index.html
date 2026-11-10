@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAAP AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#10131c;color:#fff;
+ font-family:Arial,sans-serif;
+ min-height:100vh;display:flex;flex-direction:column
+}
+header{
+ padding:20px;background:#191f2d;
+ border-bottom:1px solid #30394c;
+ display:flex;align-items:center;gap:12px
+}
+.logo{
+ width:43px;height:43px;border-radius:14px;
+ background:#7357ff;display:grid;place-items:center;
+ font-size:22px;font-weight:bold
+}
+header h2{margin:0;font-size:21px}
+header small{color:#9ba8bd}
+main{
+ flex:1;display:flex;flex-direction:column;
+ max-width:750px;width:100%;margin:auto;padding:18px
+}
+.welcome{margin:auto 0;text-align:center}
+.welcome h1{font-size:32px}
+.welcome p{color:#aab4c7;line-height:1.6}
+#chat{flex:1;overflow-y:auto;padding-bottom:15px}
+.msg{
+ padding:13px 16px;border-radius:15px;
+ margin:10px 0;max-width:88%;line-height:1.5;
+ white-space:pre-wrap
+}
+.user{background:#6650e8;margin-left:auto}
+.bot{background:#202a3b;margin-right:auto}
+.input-area{
+ display:flex;gap:9px;padding:12px 0;
+ position:sticky;bottom:0;background:#10131c
+}
+input{
+ flex:1;min-width:0;padding:15px;
+ border-radius:13px;border:1px solid #39445a;
+ background:#202a3b;color:white;font-size:16px
+}
+button{
+ border:0;border-radius:13px;padding:0 19px;
+ background:#7357ff;color:white;font-size:16px
+}
+footer{text-align:center;color:#77839a;font-size:12px;padding:10px}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">B</div>
+ <div>
+  <h2>BAAP AI</h2>
+  <small>Personal AI Assistant</small>
+ </div>
+</header>
+
+<main>
+ <div id="chat">
+  <div class="welcome" id="welcome">
+   <h1>नमस्ते! 👋</h1>
+   <p>मैं तुम्हारा अपना AI Assistant हूं।<br>
+   तुम्हारा AI सिस्टम तैयार हो रहा है।</p>
+  </div>
+ </div>
+
+ <div class="input-area">
+  <input id="message" placeholder="अपना मैसेज लिखो..."
+   onkeydown="if(event.key==='Enter')sendMessage()">
+  <button onclick="sendMessage()">भेजें</button>
+ </div>
+ <footer>BAAP AI · Personal Project · Version 0.1</footer>
+</main>
+
+<script>
+function sendMessage(){
+ const input=document.getElementById("message");
+ const chat=document.getElementById("chat");
+ const value=input.value.trim();
+ if(!value)return;
+
+ document.getElementById("welcome")?.remove();
+
+ const user=document.createElement("div");
+ user.className="msg user";
+ user.textContent=value;
+ chat.appendChild(user);
+
+ const bot=document.createElement("div");
+ bot.className="msg bot";
+ bot.textContent="तुम्हारा मैसेज मिल गया है। मेरा AI Brain अभी कनेक्ट नहीं हुआ है। अगले चरण में इसे जोड़ेंगे।";
+ chat.appendChild(bot);
+
+ input.value="";
+ chat.scrollTop=chat.scrollHeight;
+}
+</script>
+</body>
+</html>
